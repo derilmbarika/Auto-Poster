@@ -1,0 +1,25 @@
+# Secrets — never commit
+.env
+
+# macOS
+.DS_Store
+
+# Local Claude Code settings
+.claude/settings.local.json
+
+# Unrelated local working files (not part of Auto Poster)
+.tmp_wpress/
+.playwright-mcp/
+extracted/
+mywatch-import/
+stackcrate-rebrand/
+*.rtfd/
+*.jpeg
+*.jpg
+*.png
+nexchrono_price_fix_proposal.csv
+env.example
+
+# Caches
+__pycache__/
+*.pyc
