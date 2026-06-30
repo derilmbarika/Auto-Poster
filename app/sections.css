@@ -1,0 +1,276 @@
+/* ---- Hero ---------------------------------------------------------------- */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero__glow {
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 70%;
+  background: radial-gradient(
+    50% 60% at 50% 0%,
+    rgba(201, 163, 95, 0.22),
+    transparent 70%
+  );
+  pointer-events: none;
+  will-change: transform;
+}
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  perspective: 1000px;
+}
+.hero__title {
+  margin-top: 1.5rem;
+  transform-style: preserve-3d;
+}
+.hero__lead {
+  margin-top: 2rem;
+}
+.hero__cue {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  translate: -50% 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+.hero__cue span {
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(var(--accent), transparent);
+}
+
+/* ---- Intro / parallax ---------------------------------------------------- */
+.intro {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+@media (min-width: 860px) {
+  .intro {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+  }
+}
+.intro__media {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
+}
+.intro__media-inner {
+  position: absolute;
+  inset: -12% 0;
+  background: linear-gradient(160deg, #1b1b22, #2a2620 60%, #141318);
+  will-change: transform;
+}
+.intro__media-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(80% 50% at 30% 20%, rgba(231, 207, 155, 0.18), transparent);
+}
+
+/* ---- Pinned storytelling ------------------------------------------------- */
+.pin {
+  position: relative;
+}
+.pin__stage {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.pin__steps {
+  position: relative;
+  display: grid;
+}
+.pin__step {
+  grid-area: 1 / 1;
+  max-width: 30ch;
+  margin-inline: auto;
+}
+.pin__step .display {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+}
+.pin__progress {
+  position: absolute;
+  bottom: 14%;
+  left: 50%;
+  translate: -50% 0;
+  width: min(420px, 70vw);
+  height: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+.pin__progress > i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  scale: 0 1;
+  background: var(--accent);
+}
+
+/* ---- Features (staggered grid) ------------------------------------------- */
+.features__grid {
+  margin-top: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.feature {
+  background: var(--bg-soft);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.feature__num {
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+}
+.feature h3 {
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+  font-weight: 600;
+}
+.feature p {
+  margin-top: 0.75rem;
+  color: var(--fg-dim);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+/* ---- Mask / scale reveal ------------------------------------------------- */
+.mask {
+  text-align: center;
+}
+.mask__frame {
+  margin: 3rem auto 0;
+  width: min(900px, 92vw);
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  clip-path: inset(100% 0% 0% 0% round 16px);
+  border: 1px solid var(--line);
+}
+.mask__img {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2c2718, #4a3d22 45%, #1a1916);
+  position: relative;
+  scale: 1.25;
+  will-change: transform;
+}
+.mask__img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 80% at 70% 30%, rgba(231, 207, 155, 0.25), transparent);
+}
+
+/* ---- Horizontal gallery -------------------------------------------------- */
+.gallery {
+  overflow: hidden;
+}
+.gallery__track {
+  display: flex;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+  width: max-content;
+  will-change: transform;
+}
+.gallery__card {
+  width: clamp(260px, 32vw, 420px);
+  aspect-ratio: 3 / 4;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.55)),
+    var(--bg-soft);
+  flex-shrink: 0;
+}
+.gallery__card:nth-child(3n + 1) {
+  background-image: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.55)),
+    linear-gradient(150deg, #2a2418, #15141a);
+}
+.gallery__card:nth-child(3n + 2) {
+  background-image: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.55)),
+    linear-gradient(150deg, #1d2226, #15141a);
+}
+.gallery__card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.gallery__card p {
+  color: var(--fg-dim);
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+/* ---- SVG path ------------------------------------------------------------ */
+.path {
+  text-align: center;
+}
+.path svg {
+  margin-top: 2.5rem;
+  width: min(720px, 90vw);
+  height: auto;
+}
+.path path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* ---- Footer -------------------------------------------------------------- */
+.footer {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(4rem, 10vh, 7rem);
+}
+.footer__big {
+  font-size: clamp(2.5rem, 10vw, 8rem);
+  line-height: 0.95;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.footer__row {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  color: var(--fg-dim);
+  font-size: 0.9rem;
+}
+.footer__row a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--ease-out);
+}
+.footer__row a:hover {
+  border-color: var(--accent);
+}

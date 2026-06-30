@@ -1,0 +1,129 @@
+:root {
+  --bg: #0a0a0c;
+  --bg-soft: #121217;
+  --fg: #f4f3ee;
+  --fg-dim: #a8a79e;
+  --accent: #c9a35f;
+  --accent-soft: #e7cf9b;
+  --line: rgba(244, 243, 238, 0.12);
+  --maxw: 1200px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Lenis drives smooth scroll in JS; this is the reduced-motion fallback. */
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* GSAP sets autoAlpha; pre-hide reveal targets so there's no flash before JS. */
+.reveal-hidden {
+  visibility: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.display {
+  font-size: clamp(2.5rem, 8vw, 6.5rem);
+  line-height: 0.98;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--fg-dim);
+  max-width: 46ch;
+}
+
+.section {
+  position: relative;
+  padding-block: clamp(5rem, 14vh, 11rem);
+}
+
+/* Respect users who prefer reduced motion: neutralize transforms/opacity that
+   JS animations leave behind, and disable CSS transitions/animations. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-hidden {
+    visibility: visible;
+  }
+}
+
+/* Skip link: off-screen until focused, then slides into the top-left. */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--accent);
+  color: #0a0a0c;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 6px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* Keyboard focus stays clearly visible regardless of motion settings. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
